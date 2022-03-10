@@ -1,6 +1,6 @@
 body {
 	font-family: 'Noto Sans JP', 'Montserrat', sans-serif;
-	background-color: #e8f2f0;
+	background-color: #e4f3f0;
 	color: #000;
 	line-height: 1.6;
 	font-size: 13px;
@@ -14,7 +14,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	color: #4e6e68;
+	color: #329682;
 	line-height: 1;
 }
 .header_contents {
@@ -30,16 +30,18 @@ body {
 .button {
 	margin-left: 5px;
 	color: #fff;
-	padding: 10px;
+	padding: 9px 8px 7px;
 	font-size: 10px;
 	font-weight: bold;
 	border-radius: 3px;
+	border: 2px solid #329682;
 }
 .button.button--add {
-	background-color: #4e6e68;
+	background-color: #329682;
 }
 .button.button--del {
-	background-color: #924c5a;
+	color: #329682;
+	background-color: #fff;
 }
 .login {
 	text-align: right;
@@ -48,14 +50,14 @@ body {
 
 /* todo ----- */
 .todo {
-	padding: 20px 0 0;
+	padding: 13px 0 0;
 }
 .todo > li {
 	position: relative;
 	display: flex;
 	align-items: center;
 	background-color: #fff;
-	padding: 15px 15px 13px 13px;
+	padding: 15px 15px 14px 13px;
 	border-radius: 5px;
 	box-shadow: 0px 3px 5px rgba(100,100,100,.1);
 	transition: .3s;
@@ -79,12 +81,18 @@ body {
 	transform: translate(0, calc(-50% - 2px));
 }
 .check::before {
-	background-color: #e3e5e5;
+	background-color: #e8e8e8;
 	border-radius: 3px;
 	width: 20px;
 	height: 20px;
 }
 .check::after {
+	width: 20px;
+	height: 20px;
+	background-image: url(../images/check.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 13px;
 }
 .menu {
 	position: absolute;
@@ -98,10 +106,9 @@ body {
 	opacity: .3;
 	transform: translateY(-50%);
 }
-
 .todo > li.is-complete {
 	opacity: .5;
 }
-.todo > li.is-complete  {
-	opacity: .5;
+.todo > li.is-complete .check::after {
+	background-image: url(../images/check_complete.png);
 }

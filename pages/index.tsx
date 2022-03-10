@@ -7,7 +7,7 @@ const Home: NextPage = () => {
 			<Head>
 				<title>Todos</title>
 				<link rel="preconnect" href="https://fonts.gstatic.com"></link>
-				<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet"></link>
+				<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet"></link>
 			</Head>
 			<div className="wrapper">
 				<div className="header">

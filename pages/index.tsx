@@ -17,7 +17,7 @@ const Home: NextPage = () => {
 						<div><button className="button button--del">- delete</button></div>
 					</div>
 					<div>
-						<button className="login">きょうこさん</button>
+						<button className="login">あんずさん</button>
 					</div>
 				</div>
 				<div>

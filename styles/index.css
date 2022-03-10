@@ -30,8 +30,9 @@ body {
 .button {
 	margin-left: 5px;
 	color: #fff;
-	font-size: 10px;
 	padding: 10px;
+	font-size: 10px;
+	font-weight: bold;
 	border-radius: 3px;
 }
 .button.button--add {

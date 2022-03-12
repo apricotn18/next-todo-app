@@ -1,7 +1,7 @@
 // TODO: doCheckした時のfirebase更新
 
 import Layout from './component/Layout';
-import { db } from './component/firebase'
+import db from '../public/firebase'
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from "firebase/firestore";
 

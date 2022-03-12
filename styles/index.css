@@ -107,6 +107,11 @@ body {
 .todo > li.is-complete .check::after {
 	background-image: url(../images/check_complete.png);
 }
+/* empty */
+.todo > li.is-empty {
+	background-color: inherit;
+	box-shadow: none;
+}
 
 /* footer ----- */
 .footer {

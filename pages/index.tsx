@@ -1,3 +1,5 @@
+// TODO: doCheckした時のfirebase更新
+
 import Layout from './component/Layout';
 import { db } from './component/firebase'
 import { useEffect, useState } from 'react';
@@ -40,14 +42,14 @@ export default function Home () {
 			<Layout title="Todos">
 				<div>
 					<ul className="todo">
-						{data.map((item) => {
+						{data.length !== 0 ? data.map((item) => {
 							return (
 						<li key={item.key} className={item.check ? COMPLETE_CLASS : ''} onClick={doCheck}>
 							<div><button className="check"></button></div>
 							<p>{item.todo}</p>
 						</li>
 							)
-						})}
+						}) : <li className="is-empty">Todoがありません</li>}
 					</ul>
 				</div>
 			</Layout>

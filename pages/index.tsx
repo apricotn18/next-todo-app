@@ -15,21 +15,27 @@ export default function Home () {
 
 	const mydata: any[] = [];
 	const [data, setData] = useState(mydata);
-	const [msg, setMsg] = useState('');
+	const [msg, setMsg] = useState('connect..');
 
 	useEffect(() => {
 		getDocs(collection(db, 'test'))
 			.then((res) => {
-				res.forEach((doc) => {
-					const item: any = doc.data();
-					mydata.push({
-						key: doc.id,
-						todo: item.todo,
-						check: item.check,
+				if (res !== null) {
+					res.forEach((doc) => {
+						const item: any = doc.data();
+						mydata.push({
+							key: doc.id,
+							todo: item.todo,
+							check: item.check,
+						});
 					});
-				});
-				setData(mydata);
-				setMsg('data set');
+					setData(mydata);
+					setMsg('');
+				} else {
+					setMsg('Todoがありません');
+				}
+			}).catch(() => {
+				setMsg('データ取得に失敗しました');
 			});
 	}, []);
 
@@ -49,7 +55,7 @@ export default function Home () {
 							<p>{item.todo}</p>
 						</li>
 							)
-						}) : <li className="is-empty">Todoがありません</li>}
+						}) : <li className="is-empty">{msg}</li>}
 					</ul>
 				</div>
 			</Layout>

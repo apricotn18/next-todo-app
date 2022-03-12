@@ -1,23 +1,45 @@
-import Layout from './component/Layout.js';
+import Layout from './component/Layout';
+import { db } from './component/firebase'
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from "firebase/firestore";
 
 export default function Home () {
+	type todoList = {
+		todo: string;
+		check: boolean;
+	};
+
+	const mydata: any[] = [];
+	const [data, setData] = useState(mydata);
+
+	useEffect(() => {
+		getDocs(collection(db, 'test'))
+			.then((res) => {
+				res.forEach((doc) => {
+					const item: any = doc.data();
+					mydata.push({
+						key: doc.id,
+						todo: item.todo,
+						check: item.check,
+					});
+				});
+				setData(mydata);
+			});
+	}, []);
+
 	return (
 		<div>
 			<Layout title="Todos">
 				<div>
 					<ul className="todo">
-						<li className="is-complete">
+						{data.map((item) => {
+							return (
+						<li key={item.key} className={item.check ? 'is-complete' : ''}>
 							<div><button className="check"></button></div>
-							<p>完了タスク</p>
+							<p>{item.todo}</p>
 						</li>
-						<li>
-							<div><button className="check"></button></div>
-							<p>未完了のタスク</p>
-						</li>
-						<li>
-							<div><button className="check"></button></div>
-							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						</li>
+							)
+						})}
 					</ul>
 				</div>
 			</Layout>

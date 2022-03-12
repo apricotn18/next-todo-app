@@ -6,6 +6,7 @@ export default function Layout (props) {
 			<Head>
 				<title>Todos</title>
 				<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+				{/* eslint-disable-next-line */}
 				<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
 			</Head>
 			<div className="wrapper">

@@ -1,6 +1,6 @@
 body {
 	font-family: 'Noto Sans JP', 'Montserrat', sans-serif;
-	background-color: #e4f3f0;
+	background-color: #e0f1ef;
 	color: #000;
 	line-height: 1.6;
 	font-size: 13px;
@@ -14,7 +14,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	color: #329682;
+	color: #389380;
 	line-height: 1;
 }
 .header_contents {
@@ -30,17 +30,17 @@ body {
 .button {
 	margin-left: 5px;
 	color: #fff;
-	padding: 8px 7px;
+	padding: 10px 8px;
 	font-size: 10px;
 	font-weight: bold;
 	border-radius: 3px;
-	border: 2px solid #329682;
+	/* border: 1px solid #389380; */
 }
 .button.button--add {
-	background-color: #329682;
+	background-color: #389380;
 }
 .button.button--del {
-	color: #329682;
+	color: #389380;
 	background-color: #fff;
 }
 .login {

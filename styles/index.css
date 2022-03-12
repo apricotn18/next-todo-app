@@ -30,9 +30,11 @@ body {
 .button {
 	margin-left: 5px;
 	color: #fff;
-	padding: 10px 8px;
+	width: 50px;
+	padding: 10px 0;
 	font-size: 10px;
 	font-weight: bold;
+	text-align: center;
 	border-radius: 3px;
 	/* border: 1px solid #389380; */
 }

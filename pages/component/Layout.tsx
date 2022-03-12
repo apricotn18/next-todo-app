@@ -12,8 +12,8 @@ export default function Layout (props: any) {
 				<div className="header">
 					<div className="header_contents">
 						<h1 className="header_title">{props.title}</h1>
-						<div><button className="button button--add">+ add</button></div>
-						<div><button className="button button--del">- delete</button></div>
+						<div><button className="button button--add">+ 追加</button></div>
+						<div><button className="button button--del">- 削除</button></div>
 					</div>
 					<div>
 						<button className="login">あんずさん</button>

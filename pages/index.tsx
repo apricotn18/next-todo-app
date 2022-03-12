@@ -1,23 +1,54 @@
-import Layout from './component/Layout.js';
+import Layout from './component/Layout';
+import { db } from './component/firebase'
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from "firebase/firestore";
+
+const COMPLETE_CLASS = 'is-complete';
 
 export default function Home () {
+	type todoList = {
+		todo: string;
+		check: boolean;
+	};
+
+	const mydata: any[] = [];
+	const [data, setData] = useState(mydata);
+	const [msg, setMsg] = useState('');
+
+	useEffect(() => {
+		getDocs(collection(db, 'test'))
+			.then((res) => {
+				res.forEach((doc) => {
+					const item: any = doc.data();
+					mydata.push({
+						key: doc.id,
+						todo: item.todo,
+						check: item.check,
+					});
+				});
+				setData(mydata);
+				setMsg('ok');
+			});
+	}, []);
+
+	const doCheck = (e: any) => {
+		e.target.classList.toggle(COMPLETE_CLASS);
+	}
+
 	return (
 		<div>
 			<Layout title="Todos">
+				<h2>{msg}</h2>
 				<div>
 					<ul className="todo">
-						<li className="is-complete">
+						{data.map((item) => {
+							return (
+						<li key={item.key} className={item.check ? COMPLETE_CLASS : ''} onClick={doCheck}>
 							<div><button className="check"></button></div>
-							<p>完了タスク</p>
+							<p>{item.todo}</p>
 						</li>
-						<li>
-							<div><button className="check"></button></div>
-							<p>未完了のタスク</p>
-						</li>
-						<li>
-							<div><button className="check"></button></div>
-							<p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-						</li>
+							)
+						})}
 					</ul>
 				</div>
 			</Layout>

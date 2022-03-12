@@ -19,7 +19,12 @@ export default function Layout (props: any) {
 						<button className="login">あんずさん</button>
 					</div>
 				</div>
-				{props.children}
+				<section>
+					{props.children}
+				</section>
+				<div className="footer">
+					<small>&#169; 2022  ANZU</small>
+				</div>
 			</div>
 		</div>
 	)

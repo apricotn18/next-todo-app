@@ -6,7 +6,9 @@ body {
 	font-size: 13px;
 }
 .wrapper {
-	padding: 23px 15px 30px;
+	position: relative;
+	padding: 23px 15px 35px;
+	min-height: 100vh;
 }
 
 /* header ----- */
@@ -36,7 +38,6 @@ body {
 	font-weight: bold;
 	text-align: center;
 	border-radius: 3px;
-	/* border: 1px solid #389380; */
 }
 .button.button--add {
 	background-color: #389380;
@@ -113,4 +114,17 @@ body {
 }
 .todo > li.is-complete .check::after {
 	background-image: url(../images/check_complete.png);
+}
+
+/* footer ----- */
+.footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 3px;
+	color: #98b2ac;
+	font-size: 10px;
+	text-align: center;
+	letter-spacing: 1px;
 }

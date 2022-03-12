@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-export default function Layout (props: any) {
+export default function Layout (props) {
 	return (
 		<div>
 			<Head>

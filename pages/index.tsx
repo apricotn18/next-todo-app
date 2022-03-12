@@ -1,4 +1,4 @@
-import Layout from './component/Layout.tsx';
+import Layout from './component/Layout.js';
 
 export default function Home () {
 	return (

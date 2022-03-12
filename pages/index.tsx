@@ -27,7 +27,7 @@ export default function Home () {
 					});
 				});
 				setData(mydata);
-				setMsg('ok');
+				setMsg('data set');
 			});
 	}, []);
 
@@ -38,7 +38,6 @@ export default function Home () {
 	return (
 		<div>
 			<Layout title="Todos">
-				<h2>{msg}</h2>
 				<div>
 					<ul className="todo">
 						{data.map((item) => {

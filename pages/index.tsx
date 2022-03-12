@@ -1,4 +1,3 @@
-import type { NextPage } from 'next';
 import Layout from './component/Layout.tsx';
 
 export default function Home () {

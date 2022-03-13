@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800&family=Noto+Sans+JP:wght@400;700&display=swap');
+
 body {
-	font-family: 'Noto Sans JP', 'Montserrat', sans-serif;
+	font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
 	background-color: #e0f1ef;
 	color: #000;
 	line-height: 1.6;
@@ -20,9 +22,8 @@ body {
 }
 .header_title {
 	padding-right: 8px;
-	padding-bottom: 2px;
 	font-size: 36px;
-	font-weight: 900;
+	font-weight: bold;
 }
 /* button */
 .button {
@@ -65,7 +66,7 @@ body {
 
 /* todo ----- */
 .todo {
-	padding: 15px 0 0;
+	padding: 16px 0 0;
 }
 .todo > li {
 	position: relative;

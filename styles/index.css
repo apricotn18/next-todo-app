@@ -14,27 +14,21 @@ body {
 /* header ----- */
 .header {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
 	color: #389380;
 	line-height: 1;
 }
-.header_contents {
-	display: flex;
-	align-items: center;
-}
 .header_title {
-	padding-right: 5px;
-	padding-bottom: 1px;
+	padding-right: 3px;
 	font-size: 36px;
 	font-weight: 900;
 }
 /* button */
 .button {
-	margin-left: 5px;
+	margin-left: 8px;
 	color: #fff;
 	width: 60px;
-	padding: 11px 0;
+	padding: 12px 0;
 	font-size: 12px;
 	font-weight: bold;
 	text-align: center;
@@ -46,11 +40,6 @@ body {
 .button.button--del {
 	color: #389380;
 	background-color: #fff;
-}
-/* login */
-.login {
-	text-align: right;
-	width: 100%;
 }
 
 /* todo ----- */
@@ -71,7 +60,7 @@ body {
 	margin-top: 10px;
 }
 .todo > li:hover {
-	box-shadow: 0px 5px 5px rgba(100,100,100,.3);
+	box-shadow: 0px 5px 5px rgba(100,100,100,.2);
 }
 .check {
 	position: relative;

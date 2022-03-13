@@ -11,18 +11,13 @@ export default function Layout (props) {
 			</Head>
 			<div className="wrapper">
 				<div className="header">
-					<div className="header_contents">
-						<h1 className="header_title">{props.title}</h1>
-							{props.title === 'Todos' ?
-								<div>
-									<button className="button button--add">+ 追加</button>
-									<button className="button button--del">- 削除</button>
-								</div>
-							: ''}
-					</div>
-					<div>
-						<button className="login">あんずさん</button>
-					</div>
+					<h1 className="header_title">{props.title}</h1>
+						{props.title === 'Todos' ?
+							<div>
+								<button className="button button--add">+ 追加</button>
+								<button className="button button--del">- 削除</button>
+							</div>
+						: ''}
 				</div>
 				<section>
 					{props.children}

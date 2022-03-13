@@ -20,26 +20,47 @@ body {
 }
 .header_title {
 	padding-right: 3px;
+	padding-bottom: 2px;
 	font-size: 36px;
 	font-weight: 900;
 }
 /* button */
 .button {
-	margin-left: 8px;
+	display: inline-block;
+	margin-left: 5px;
+	width: 63px;
+	height: 36px;
+	padding-right: 2px;
 	color: #fff;
-	width: 60px;
-	padding: 12px 0;
 	font-size: 12px;
 	font-weight: bold;
 	text-align: center;
+	line-height: 36px;
 	border-radius: 3px;
+}
+.button::before {
+	content: "";
+	display: inline-block;
+	margin-right: 2px;
+	width: 15px;
+	height: 15px;
+	background-position: center;
+	background-size: 13px;
+	background-repeat: no-repeat;
+	transform: translateY(3px);
 }
 .button.button--add {
 	background-color: #389380;
 }
+.button.button--add::before {
+	background-image: url(../images/add.png);
+}
 .button.button--del {
 	color: #389380;
 	background-color: #fff;
+}
+.button.button--del::before {
+	background-image: url(../images/delete.png);
 }
 
 /* todo ----- */

@@ -40,7 +40,7 @@ export default function Home () {
 	}, []);
 
 	const doCheck = (e: any) => {
-		e.target.classList.toggle(COMPLETE_CLASS);
+		e.currentTarget.classList.toggle(COMPLETE_CLASS);
 	}
 
 	return (

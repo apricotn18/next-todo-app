@@ -1,6 +1,9 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 export default function Layout (props) {
+	const router = useRouter();
+
 	return (
 		<div>
 			<Head>
@@ -12,7 +15,7 @@ export default function Layout (props) {
 			<div className="wrapper">
 				<div className="header">
 					<h1 className="header_title">{props.title}</h1>
-						{props.title === 'Todos' ?
+						{router.route === '/' ?
 							<div>
 								<a href="./add" className="button button--add">追加</a>
 								<a href="./add" className="button button--del">削除</a>

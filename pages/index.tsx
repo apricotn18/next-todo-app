@@ -45,19 +45,17 @@ export default function Home () {
 
 	return (
 		<div>
-			<Layout title="Todos">
-				<div>
-					<ul className="todo">
-						{data.length !== 0 ? data.map((item) => {
-							return (
-						<li key={item.key} className={item.check ? COMPLETE_CLASS : ''} onClick={doCheck}>
-							<div><button className="check"></button></div>
-							<p>{item.todo}</p>
-						</li>
-							)
-						}) : <li className="is-empty">{msg}</li>}
-					</ul>
-				</div>
+			<Layout title="Todo List">
+				<ul className="todo">
+					{data.length !== 0 ? data.map((item) => {
+						return (
+					<li key={item.key} className={item.check ? COMPLETE_CLASS : ''} onClick={doCheck}>
+						<div><button className="check"></button></div>
+						<p>{item.todo}</p>
+					</li>
+						)
+					}) : <li className="is-empty">{msg}</li>}
+				</ul>
 			</Layout>
 		</div>
 	)

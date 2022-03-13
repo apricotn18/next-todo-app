@@ -19,8 +19,7 @@ export default function Home () {
 	const [data, setData] = useState(mydata);
 	const [msg, setMsg] = useState('start');
 
-	// リロードされても再取得しないようにする
-	useEffect(() => {
+	useEffect(() => { // リロードされても再取得しないようにする
 		getDocs(query(collection(db, 'test'), orderBy('timestamp')))
 			.then((res) => {
 				if (res.docs.length !== 0) {

@@ -38,6 +38,7 @@ body {
 	text-align: center;
 	line-height: 36px;
 	border-radius: 3px;
+	cursor: pointer;
 }
 .button::before {
 	content: "";
@@ -73,45 +74,70 @@ body {
 	display: flex;
 	align-items: center;
 	background-color: #fff;
-	padding: 15px 15px 14px 13px;
+	padding: 10px 10px 9px 9px;
 	border-radius: 5px;
-	box-shadow: 0px 3px 5px rgba(100,100,100,.1);
+	box-shadow: 0px 2px 3px rgba(100,100,100,.1);
 	transition: .3s box-shadow;
 }
 .todo > li:not(:first-child) {
-	margin-top: 10px;
+	margin-top: 5px;
 }
 .todo > li:hover {
-	box-shadow: 0px 5px 5px rgba(100,100,100,.2);
+	box-shadow: 0px 3px 5px rgba(100,100,100,.2);
+}
+.todo > li p {
+	width: 100%;
+	word-break: break-all;
 }
 .check {
 	position: relative;
-	width: 30px;
-	min-width: 30px;
+	width: 23px;
+	min-width: 23px;
 }
-.check::before, .check::after {
+.check::after {
 	content: "";
 	position: absolute;
 	top: 50%;
 	left: 0;
-	transform: translate(0, calc(-50% - 2px));
-}
-.check::before {
-	background-color: #e8e8e8;
-	border-radius: 3px;
-	width: 20px;
-	height: 20px;
-}
-.check::after {
 	width: 20px;
 	height: 20px;
 	background-image: url(../images/check.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 13px;
+	transform: translate(0, calc(-50% - 2px));
+}
+.delete_button_wrapper {
+	width: 20px;
+	min-width: 20px;
+	text-align: right;
+	transform: translateY(-2px);
+}
+.delete_button {
+	position: relative;
+	width: 16px;
+	height: 16px;
+	background-color: rgb(228, 228, 228);
+	border-radius: 50%;
+}
+.delete_button:before, .delete_button::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 1.5px;
+	height: 8px;
+	background-color: #fff;
+}
+.delete_button:before {
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+.delete_button::after {
+	transform: translate(-50%, -50%) rotate(-45deg);
 }
 /* complete */
-.todo > li.is-complete {
+.todo > li.is-complete p {
+	text-decoration: line-through;
 	opacity: .5;
 }
 .todo > li.is-complete .check::after {

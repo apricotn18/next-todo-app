@@ -1,9 +1,7 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
+import Link from "next/link";
 
 export default function Layout (props) {
-	const router = useRouter();
-
 	return (
 		<div>
 			<Head>
@@ -13,7 +11,7 @@ export default function Layout (props) {
 			<div className="wrapper">
 				<div className="header">
 					<h1 className="header_title">
-						<a href="/">{props.title}</a>
+						<Link href="/"><a>{props.title}</a></Link>
 					</h1>
 					{props.menu ? props.menu : ''}
 				</div>

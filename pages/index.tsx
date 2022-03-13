@@ -4,7 +4,7 @@ import Layout from './component/Layout';
 import { useEffect, useState } from 'react';
 import Link from "next/link";
 import db from '../public/firebase'
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, deleteDoc, getDocs } from "firebase/firestore";
 
 const COMPLETE_CLASS = 'is-complete';
 
@@ -20,16 +20,16 @@ export default function Home () {
 	const [msg, setMsg] = useState('start');
 
 	const sortByTime = (array: todoList[]): todoList[] => {
-		console.log(array);
 		return array.sort((a, b) => {
 			return a.timestamp > b.timestamp ? 1 : -1;
 		});
 	};
 
+	// リロードされても再取得しないようにする
 	useEffect(() => {
 		getDocs(collection(db, 'test'))
 			.then((res) => {
-				if (res !== null) {
+				if (res.docs.length !== 0) {
 					res.forEach((doc) => {
 						const item: any = doc.data();
 						mydata.push({
@@ -50,14 +50,29 @@ export default function Home () {
 
 	const doCheck = (e: any) => {
 		e.currentTarget.classList.toggle(COMPLETE_CLASS);
-	}
+	};
+
+	const doDelete = (e: any) => {
+		e.stopPropagation();
+		const id = e.currentTarget.dataset.id;
+
+		if (confirm('削除しますか？')) {
+			deleteDoc(doc(db, 'test', id))
+				.then(() => {
+					const filterData = data.filter(item => item.key !== id);
+					setData(filterData);
+					if (filterData.length === 0) {
+						setMsg('Todoがありません');
+					}
+				});
+		}
+	};
 
 	return (
 		<div>
 			<Layout title="Todo List" menu={(
 				<div>
 					<Link href="/add"><a className="button button--add">追加</a></Link>
-					<Link href="/delete"><a className="button button--del">削除</a></Link>
 				</div>
 			)}>
 				{msg === 'start' || msg === 'todo set' ? "" :<p className="massege">{msg}</p>}
@@ -67,6 +82,7 @@ export default function Home () {
 					<li key={item.key} className={item.check ? COMPLETE_CLASS : ''} onClick={doCheck}>
 						<div><button className="check"></button></div>
 						<p>{item.todo}</p>
+						<div className="delete_button_wrapper"><button type="button" className="delete_button" onClick={doDelete} data-id={item.key}></button></div>
 					</li>
 						)
 					}) : ""}

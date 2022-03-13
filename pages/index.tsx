@@ -4,30 +4,24 @@ import Layout from './component/Layout';
 import { useEffect, useState } from 'react';
 import Link from "next/link";
 import db from '../public/firebase'
-import { collection, doc, deleteDoc, getDocs } from "firebase/firestore";
+import { collection, doc, query, orderBy, deleteDoc, getDocs } from "firebase/firestore";
 
 const COMPLETE_CLASS = 'is-complete';
 
 export default function Home () {
 	type todoList = {
+		key: string;
 		todo: string;
 		check: boolean;
-		timestamp: number;
 	};
 
-	const mydata: any[] = [];
+	const mydata: todoList[] = [];
 	const [data, setData] = useState(mydata);
 	const [msg, setMsg] = useState('start');
 
-	const sortByTime = (array: todoList[]): todoList[] => {
-		return array.sort((a, b) => {
-			return a.timestamp > b.timestamp ? 1 : -1;
-		});
-	};
-
 	// リロードされても再取得しないようにする
 	useEffect(() => {
-		getDocs(collection(db, 'test'))
+		getDocs(query(collection(db, 'test'), orderBy('timestamp')))
 			.then((res) => {
 				if (res.docs.length !== 0) {
 					res.forEach((doc) => {
@@ -38,7 +32,7 @@ export default function Home () {
 							check: item.check,
 						});
 					});
-					setData(sortByTime(mydata));
+					setData(mydata);
 					setMsg('todo set');
 				} else {
 					setMsg('Todoがありません');

@@ -14,13 +14,15 @@ export default function Layout (props) {
 			</Head>
 			<div className="wrapper">
 				<div className="header">
-					<h1 className="header_title">{props.title}</h1>
-						{router.route === '/' ?
-							<div>
-								<a href="./add" className="button button--add">追加</a>
-								<a href="./add" className="button button--del">削除</a>
-							</div>
-						: ''}
+					<h1 className="header_title">
+						<a href="/">{props.title}</a>
+					</h1>
+					{router.route === '/' ?
+						<div>
+							<a href="./add" className="button button--icon button--add">追加</a>
+							<a href="./add" className="button button--icon button--del">削除</a>
+						</div>
+					: ''}
 				</div>
 				<section>
 					{props.children}

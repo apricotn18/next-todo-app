@@ -144,6 +144,15 @@ body {
 	border-radius: 3px;
 }
 
+.massege {
+	color: #d02c5d;
+	margin-top: 10px;
+}
+.massege.message--black {
+	color: #000;
+	margin-top: 10px;
+}
+
 /* footer ----- */
 .footer {
 	position: absolute;

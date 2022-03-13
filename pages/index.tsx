@@ -1,8 +1,9 @@
 // TODO: doCheckした時のfirebase更新
 
 import Layout from './component/Layout';
-import db from '../public/firebase'
 import { useEffect, useState } from 'react';
+import Link from "next/link";
+import db from '../public/firebase'
 import { collection, getDocs } from "firebase/firestore";
 
 const COMPLETE_CLASS = 'is-complete';
@@ -11,11 +12,19 @@ export default function Home () {
 	type todoList = {
 		todo: string;
 		check: boolean;
+		timestamp: number;
 	};
 
 	const mydata: any[] = [];
 	const [data, setData] = useState(mydata);
-	const [msg, setMsg] = useState('connect..');
+	const [msg, setMsg] = useState('start');
+
+	const sortByTime = (array: todoList[]): todoList[] => {
+		console.log(array);
+		return array.sort((a, b) => {
+			return a.timestamp > b.timestamp ? 1 : -1;
+		});
+	};
 
 	useEffect(() => {
 		getDocs(collection(db, 'test'))
@@ -29,8 +38,8 @@ export default function Home () {
 							check: item.check,
 						});
 					});
-					setData(mydata);
-					setMsg('');
+					setData(sortByTime(mydata));
+					setMsg('todo set');
 				} else {
 					setMsg('Todoがありません');
 				}
@@ -45,7 +54,13 @@ export default function Home () {
 
 	return (
 		<div>
-			<Layout title="Todo List">
+			<Layout title="Todo List" menu={(
+				<div>
+					<Link href="/add"><a className="button button--add">追加</a></Link>
+					<Link href="/delete"><a className="button button--del">削除</a></Link>
+				</div>
+			)}>
+				{msg === 'start' || msg === 'todo set' ? "" :<p className="massege">{msg}</p>}
 				<ul className="todo">
 					{data.length !== 0 ? data.map((item) => {
 						return (
@@ -54,7 +69,7 @@ export default function Home () {
 						<p>{item.todo}</p>
 					</li>
 						)
-					}) : <li className="is-empty">{msg}</li>}
+					}) : ""}
 				</ul>
 			</Layout>
 		</div>

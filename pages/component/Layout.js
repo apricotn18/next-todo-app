@@ -15,12 +15,7 @@ export default function Layout (props) {
 					<h1 className="header_title">
 						<a href="/">{props.title}</a>
 					</h1>
-					{router.route === '/' ?
-						<div>
-							<a href="./add" className="button button--icon button--add">追加</a>
-							<a href="./add" className="button button--icon button--del">削除</a>
-						</div>
-					: ''}
+					{props.menu ? props.menu : ''}
 				</div>
 				<section>
 					{props.children}

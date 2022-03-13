@@ -55,7 +55,7 @@ body {
 	background-color: #389380;
 }
 .button.button--add::before {
-	background-image: url(../images/add.png);
+	background-image: url(../public/add.png);
 }
 
 /* massege ----- */
@@ -100,7 +100,7 @@ body {
 	left: 0;
 	width: 20px;
 	height: 20px;
-	background-image: url(../images/check.png);
+	background-image: url(../public/check.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 13px;
@@ -140,7 +140,7 @@ body {
 	opacity: .5;
 }
 .todo > li.is-complete .check::after {
-	background-image: url(../images/check_complete.png);
+	background-image: url(../public/check_complete.png);
 }
 
 /* input ----- */

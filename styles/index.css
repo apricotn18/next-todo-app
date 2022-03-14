@@ -26,7 +26,7 @@ body {
 	font-weight: bold;
 }
 /* button */
-.button {
+.add_button {
 	display: inline-block;
 	margin-left: 7px;
 	width: 65px;
@@ -37,25 +37,12 @@ body {
 	font-weight: bold;
 	text-align: center;
 	line-height: 36px;
-	border-radius: 3px;
-	cursor: pointer;
-}
-.button::before {
-	content: "";
-	display: inline-block;
-	margin-right: 2px;
-	width: 15px;
-	height: 15px;
-	background-position: center;
-	background-size: 13px;
-	background-repeat: no-repeat;
-	transform: translateY(3px);
-}
-.button.button--add {
 	background-color: #389380;
+	border-radius: 3px;
 }
-.button.button--add::before {
-	background-image: url(../public/add.png);
+.add_button img {
+	margin-right: 3px;
+	vertical-align: text-bottom;
 }
 
 /* massege ----- */
@@ -93,18 +80,23 @@ body {
 	width: 23px;
 	min-width: 23px;
 }
-.check::after {
+.check::before, .check::after {
 	content: "";
 	position: absolute;
-	top: 50%;
-	left: 0;
-	width: 20px;
-	height: 20px;
-	background-image: url(../public/check.png);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 13px;
-	transform: translate(0, calc(-50% - 2px));
+	top: calc(50% - 2px);
+	left: 6px;
+	background-color: #e8e8e8;
+	border-radius: 2px;
+}
+.check::before {
+	width: 3px;
+	height: 8px;
+	transform: rotate(-45deg) translate(calc(1px - 50%), calc(1px - 50%));
+}
+.check::after {
+	width: 3px;
+	height: 13px;
+	transform: rotate(40deg) translate(-50%, -50%);
 }
 .delete_button_wrapper {
 	width: 20px;
@@ -139,8 +131,9 @@ body {
 	text-decoration: line-through;
 	opacity: .5;
 }
+.todo > li.is-complete .check::before,
 .todo > li.is-complete .check::after {
-	background-image: url(../public/check_complete.png);
+	background-color: #389380;
 }
 
 /* input ----- */

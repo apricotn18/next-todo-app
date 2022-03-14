@@ -3,6 +3,7 @@
 import Layout from './component/Layout';
 import { useEffect, useState } from 'react';
 import Link from "next/link";
+import Image from "next/image";
 import db from '../public/firebase'
 import { collection, doc, query, orderBy, deleteDoc, getDocs } from "firebase/firestore";
 
@@ -65,7 +66,7 @@ export default function Home () {
 		<div>
 			<Layout title="Todo List" menu={(
 				<div>
-					<Link href="/add"><a className="button button--add">追加</a></Link>
+					<Link href="/add"><a className="add_button"><img src={`add.png`} width="15px" height="15px" />追加</a></Link>
 				</div>
 			)}>
 				{msg === 'start' || msg === 'todo set' ? "" :<p className="massege">{msg}</p>}

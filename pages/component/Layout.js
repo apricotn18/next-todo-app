@@ -18,9 +18,6 @@ export default function Layout (props) {
 				<section>
 					{props.children}
 				</section>
-				<div className="footer">
-					<small>&#169; 2022  ANZU</small>
-				</div>
 			</div>
 		</div>
 	)

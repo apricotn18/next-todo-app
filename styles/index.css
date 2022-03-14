@@ -10,7 +10,6 @@ body {
 .wrapper {
 	position: relative;
 	padding: 23px 15px 35px;
-	min-height: 100vh;
 }
 
 /* header ----- */

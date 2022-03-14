@@ -3,9 +3,8 @@
 import Layout from './component/Layout';
 import { useEffect, useState } from 'react';
 import Link from "next/link";
-import Image from "next/image";
 import db from '../public/firebase'
-import { collection, doc, query, orderBy, deleteDoc, getDocs } from "firebase/firestore";
+import { collection, doc, query, orderBy, deleteDoc, getDocs, updateDoc } from "firebase/firestore";
 
 const COMPLETE_CLASS = 'is-complete';
 
@@ -42,13 +41,28 @@ export default function Home () {
 			});
 	}, []);
 
+	let isUpdateCheckState = false;
 	const doCheck = (e: any) => {
-		e.currentTarget.classList.toggle(COMPLETE_CLASS);
+		// 連打対策
+		if (isUpdateCheckState) return;
+		isUpdateCheckState = true;
+
+		const targetElement = e.currentTarget;
+		const id = targetElement.dataset.id;
+		const shouldChecked = e.currentTarget.classList.contains(COMPLETE_CLASS);
+		updateDoc(doc(db, 'test', id), {
+				check: !shouldChecked,
+			}).then(() => {
+				targetElement.classList.toggle(COMPLETE_CLASS);
+				isUpdateCheckState = false;
+			}).catch(() => {
+				setMsg('更新に失敗しました');
+			});
 	};
 
 	const doDelete = (e: any) => {
 		e.stopPropagation();
-		const id = e.currentTarget.dataset.id;
+		const id = e.currentTarget.closest('li').dataset.id;
 
 		if (confirm('削除しますか？')) {
 			deleteDoc(doc(db, 'test', id))
@@ -73,11 +87,11 @@ export default function Home () {
 				<ul className="todo">
 					{data.length !== 0 ? data.map((item) => {
 						return (
-					<li key={item.key} className={item.check ? COMPLETE_CLASS : ''} onClick={doCheck}>
-						<div><button className="check"></button></div>
-						<p>{item.todo}</p>
-						<div className="delete_button_wrapper"><button type="button" className="delete_button" onClick={doDelete} data-id={item.key}></button></div>
-					</li>
+							<li key={item.key} className={item.check ? COMPLETE_CLASS : ''} onClick={doCheck} data-id={item.key}>
+								<div><span className="check"></span></div>
+								<p>{item.todo}</p>
+								<div className="delete_button_wrapper"><button type="button" className="delete_button" onClick={doDelete}></button></div>
+							</li>
 						)
 					}) : ""}
 				</ul>

@@ -1,5 +1,3 @@
-// TODO: doCheckした時のfirebase更新
-
 import Layout from './component/Layout';
 import { useEffect, useState } from 'react';
 import Link from "next/link";

@@ -32,7 +32,7 @@ export default function Add () {
 			<Layout title="add Task">
 				{msg ? <p className="massege">{msg}</p> : ""}
 				<form>
-					<textarea className="input" onChange={doChange}></textarea>
+					<textarea className="input" onChange={doChange} autoFocus></textarea>
 					<button type="button" className="submit_button" onClick={doSubmit}>登録</button>
 				</form>
 			</Layout>

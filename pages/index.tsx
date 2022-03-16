@@ -1,10 +1,10 @@
 import Layout from './component/Layout';
+import Todo from './Todo';
 import { useEffect, useState } from 'react';
 import Link from "next/link";
+import Image from "next/image";
 import db from '../public/firebase'
-import { collection, doc, query, orderBy, deleteDoc, getDocs, updateDoc } from "firebase/firestore";
-
-const COMPLETE_CLASS = 'is-complete';
+import { collection, query, orderBy, getDocs } from "firebase/firestore";
 
 export default function Home () {
 	type todoList = {
@@ -13,8 +13,8 @@ export default function Home () {
 		check: boolean;
 	};
 
-	const mydata: todoList[] = [];
-	const [data, setData] = useState(mydata);
+	let mylist: todoList[] = [];
+	const [list, setList] = useState(mylist);
 	const [msg, setMsg] = useState('start');
 
 	useEffect(() => { // リロードされても再取得しないようにする
@@ -23,13 +23,13 @@ export default function Home () {
 				if (res.docs.length !== 0) {
 					res.forEach((doc) => {
 						const item: any = doc.data();
-						mydata.push({
+						mylist.push({
 							key: doc.id,
 							todo: item.todo,
 							check: item.check,
 						});
 					});
-					setData(mydata);
+					setList(mylist);
 					setMsg('todo set');
 				} else {
 					setMsg('Todoがありません');
@@ -39,60 +39,20 @@ export default function Home () {
 			});
 	}, []);
 
-	let isUpdateCheckState = false;
-	const doCheck = (e: any) => {
-		// 連打対策
-		if (isUpdateCheckState) return;
-		isUpdateCheckState = true;
-
-		const targetElement = e.currentTarget;
-		const id = targetElement.dataset.id;
-		const shouldChecked = e.currentTarget.classList.contains(COMPLETE_CLASS);
-		updateDoc(doc(db, 'test', id), {
-				check: !shouldChecked,
-			}).then(() => {
-				targetElement.classList.toggle(COMPLETE_CLASS);
-				isUpdateCheckState = false;
-			}).catch(() => {
-				setMsg('更新に失敗しました');
-			});
-	};
-
-	const doDelete = (e: any) => {
-		e.stopPropagation();
-		const id = e.currentTarget.closest('li').dataset.id;
-
-		if (confirm('削除しますか？')) {
-			deleteDoc(doc(db, 'test', id))
-				.then(() => {
-					const filterData = data.filter(item => item.key !== id);
-					setData(filterData);
-					if (filterData.length === 0) {
-						setMsg('Todoがありません');
-					}
-				});
-		}
-	};
-
 	return (
 		<div>
 			<Layout title="Todo List" menu={(
 				<div>
-					<Link href="/add"><a className="add_button"><img src={`add.png`} width="15px" height="15px" />追加</a></Link>
+					<Link href="/add">
+						<a className="add_button">
+							<Image src={require("../public/add.png")} alt="+" width={15} height={15} className="icon_add" />
+							<span className="add_text">追加</span>
+						</a>
+					</Link>
 				</div>
 			)}>
 				{msg === 'start' || msg === 'todo set' ? "" :<p className="massege">{msg}</p>}
-				<ul className="todo">
-					{data.length !== 0 ? data.map((item) => {
-						return (
-							<li key={item.key} className={item.check ? COMPLETE_CLASS : ''} onClick={doCheck} data-id={item.key}>
-								<div><span className="check"></span></div>
-								<p>{item.todo}</p>
-								<div className="delete_button_wrapper"><button type="button" className="delete_button" onClick={doDelete}></button></div>
-							</li>
-						)
-					}) : ""}
-				</ul>
+				<Todo list={list} />
 			</Layout>
 		</div>
 	)

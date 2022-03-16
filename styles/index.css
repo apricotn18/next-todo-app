@@ -39,9 +39,28 @@ body {
 	background-color: #389380;
 	border-radius: 3px;
 }
-.add_button img {
-	margin-right: 3px;
+.add_button *:first-child {
 	vertical-align: text-bottom;
+}
+.add_text {
+	padding-left: 3px;
+}
+
+/* filter ----- */
+.filter {
+	display: flex;
+	align-items: center;
+	padding-top: 15px;
+}
+.filter dt {
+	font-weight: normal;
+}
+.filter button {
+	margin-left: 5px;
+	padding: 3px 7px;
+	color: #389380;
+	background-color: rgba(255,255,255,.7);
+	border-radius: 3px;
 }
 
 /* massege ----- */
@@ -56,7 +75,7 @@ body {
 
 /* todo ----- */
 .todo {
-	padding: 16px 0 0;
+	padding: 12px 0 0;
 }
 .todo > li {
 	position: relative;

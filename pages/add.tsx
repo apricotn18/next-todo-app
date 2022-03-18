@@ -6,18 +6,18 @@ import { addDoc, collection, Timestamp } from "firebase/firestore";
 
 export default function Add () {
 	const router = useRouter();
-	const [todo, setTodo] = useState('');
+	const [input, setInput] = useState('');
 	const [msg, setMsg] = useState('');
 
 	const doChange = (e: any) => {
-		setTodo(e.target.value);
+		setInput(e.target.value);
 	};
 
 	const doSubmit = () => {
-		if (todo.length === 0) return setMsg('1文字以上入力してください');
+		if (input.length === 0) return setMsg('1文字以上入力してください');
 
 		const data = {
-			todo,
+			todo: input,
 			check: false,
 			timestamp: Timestamp.now(),
 		};
@@ -30,7 +30,7 @@ export default function Add () {
 	return (
 		<div>
 			<Layout title="add Task">
-				{msg ? <p className="massege">{msg}</p> : ""}
+				<p className="message">{msg}</p>
 				<form>
 					<textarea className="input" onChange={doChange} autoFocus></textarea>
 					<button type="button" className="submit_button" onClick={doSubmit}>登録</button>

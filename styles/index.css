@@ -50,7 +50,7 @@ body {
 .filter {
 	display: flex;
 	align-items: center;
-	padding-top: 15px;
+	margin-top: 15px;
 }
 .filter dt {
 	font-weight: normal;
@@ -63,19 +63,19 @@ body {
 	border-radius: 3px;
 }
 
-/* massege ----- */
-.massege {
+/* message ----- */
+.message {
 	color: #d02c5d;
 	margin-top: 10px;
 }
-.massege.message--black {
+.message.message--black {
 	color: #000;
 	margin-top: 10px;
 }
 
 /* todo ----- */
 .todo {
-	padding: 12px 0 0;
+	margin-top: 13px;
 }
 .todo > li {
 	position: relative;

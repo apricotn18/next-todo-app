@@ -1,8 +1,7 @@
 import Layout from './component/Layout';
-import Todo from './component/Todo';
+import Todo from '../public/todo.js';
 import { useEffect, useState } from 'react';
 import Link from "next/link";
-import Image from "next/image";
 import db from '../public/firebase'
 import { collection, query, orderBy, getDocs } from "firebase/firestore";
 
@@ -11,18 +10,20 @@ type todoList = {
 	todo: string;
 	check: boolean;
 	show: boolean;
-};
+}
+type setStateTodo = React.Dispatch<React.SetStateAction<todoList[]>>;
+type setStateMessage = React.Dispatch<React.SetStateAction<string>>;
 
 export default function Home () {
 	let mylist: todoList[] = [];
-	const [list, setList] = useState(mylist);
-	const [msg, setMsg] = useState('start');
+	const [list, setList]: [todoList[], setStateTodo] = useState(mylist);
+	const [msg, setMsg]: [string, setStateMessage] = useState('start');
 
 	useEffect(() => { // リロードされても再取得しないようにする
 		getDocs(query(collection(db, 'test'), orderBy('timestamp')))
-			.then((res) => {
+			.then((res: any) => {
 				if (res.docs.length !== 0) {
-					res.forEach((doc) => {
+					res.forEach((doc: any) => {
 						const item: any = doc.data();
 						mylist.push({
 							key: doc.id,
@@ -46,7 +47,7 @@ export default function Home () {
 			<Layout title="Todo List" menu={(
 				<Link href="/add">
 					<a className="add_button">
-						<Image src={require("../public/add.png")} alt="+" width={15} height={15} className="icon_add" />
+						<img src="./add.png" alt="+" width={15} height={15} className="icon_add" />
 						<span className="add_text">追加</span>
 					</a>
 				</Link>

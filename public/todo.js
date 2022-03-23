@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
-import db from '../../public/firebase'
+import db from './firebase'
 
 const COMPLETE_CLASS = 'is-complete';
 
@@ -11,14 +11,13 @@ export default function Todo (props) {
 
 	/**
 	 * listの状態を更新
-	 * 
+	 *
 	 * @param {array} options.list todoリスト
 	 * @param {string} options.id　itemのid
 	 * @param {string} options.target　更新するターゲット
 	 * @param {boolean} options.status 更新後の状態
 	 * @return {void}
 	 */
-
 	const updateListState = ((options) => {
 		let newList = options.list;
 		for (const i in newList) {
@@ -27,7 +26,6 @@ export default function Todo (props) {
 				newList[i][options.target] = options.status;
 			}
 		};
-		console.log(newList);
 		setList(newList);
 	});
 
@@ -38,10 +36,9 @@ export default function Todo (props) {
 		isUpdateState = true;
 
 		const targetElement = e.currentTarget;
-		const id = targetElement.dataset.id;
+		const id = targetElement.dataset.id || '';
 		const updateCheck = !targetElement.classList.contains(COMPLETE_CLASS);
 		const messageElement = document.querySelectorAll('.message')[0];
-
 		updateDoc(doc(db, 'test', id), {
 				check: updateCheck,
 			}).then(() => {
@@ -52,7 +49,6 @@ export default function Todo (props) {
 					target: 'check',
 					status: updateCheck,
 				});
-				console.log(updateCheck);
 				// 表示更新
 				targetElement.classList.toggle(COMPLETE_CLASS);
 				messageElement.textContent = '';
@@ -65,8 +61,8 @@ export default function Todo (props) {
 
 	const doDelete = (e) => {
 		e.stopPropagation();
-		const targetElement = e.currentTarget.closest('li');
-		const id = targetElement.dataset.id;
+		const targetElement = e.currentTarget.closest('li') || e.currentTarget;
+		const id = targetElement.dataset.id || '';
 		const messageElement = document.querySelectorAll('.message')[0];
 
 		if (confirm('削除しますか？')) {
@@ -89,21 +85,21 @@ export default function Todo (props) {
 	};
 
 	const doFilter = (e) => {
-		const condition = e.currentTarget.dataset.filter;
-		let newSort = [];
+		const condition = e.currentTarget.dataset.filter || '';
+		let newList = [];
 
 		switch (condition) {
 			case 'complete':
-				newSort = mylist.filter((item) => item.check);
+				newList = mylist.filter((item) => item.check);
 				break;
-			case'incomplete':
-				newSort = mylist.filter((item) => !item.check);
+			case 'incomplete':
+				newList = mylist.filter((item) => !item.check);
 				break;
 			default:
-				newSort = mylist;
+				newList = mylist;
 				break;
 		}
-		setList(newSort);
+		setList(newList);
 	};
 
 	return (

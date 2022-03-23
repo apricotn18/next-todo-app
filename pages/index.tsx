@@ -19,6 +19,10 @@ export default function Home () {
 	const [list, setList]: [todoList[], setStateTodo] = useState(mylist);
 	const [msg, setMsg]: [string, setStateMessage] = useState('start');
 
+	const microCMSLoader = ({ src, width, quality }: { src: any, width: number, quality: any }) => {
+		return `${src}?auto=format&fit=max&w=${width}`
+	}
+
 	useEffect(() => { // リロードされても再取得しないようにする
 		getDocs(query(collection(db, 'test'), orderBy('timestamp')))
 			.then((res: any) => {
@@ -46,10 +50,7 @@ export default function Home () {
 		<div>
 			<Layout title="Todo List" menu={(
 				<Link href="/add">
-					<a className="add_button">
-						<img src="./add.png" alt="+" width={15} height={15} className="icon_add" />
-						<span className="add_text">追加</span>
-					</a>
+					<a className="add_button">追加</a>
 				</Link>
 			)}>
 				{list.length === 0 && msg !== 'start'

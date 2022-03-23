@@ -28,22 +28,20 @@ body {
 .add_button {
 	display: inline-block;
 	margin-left: 7px;
-	width: 65px;
-	height: 36px;
-	padding-right: 2px;
+	padding: 12px 10px;
 	color: #fff;
 	font-size: 12px;
 	font-weight: bold;
 	text-align: center;
-	line-height: 36px;
 	background-color: #389380;
 	border-radius: 3px;
 }
 .add_button *:first-child {
 	vertical-align: text-bottom;
 }
-.add_text {
-	padding-left: 3px;
+.add_button::before {
+	content: "+";
+	margin-right: 5px;
 }
 
 /* filter ----- */

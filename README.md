@@ -7,11 +7,15 @@ https://apric-todo-app.herokuapp.com/
 - 追加
 - 削除
 - チェックの切り替え
+- ソート
 
-## 残りのTODO
-- 型をつける
-
-## やり残したこと（？）
-- cssでbackground-imageを使って画像が挿入できない？
-- チェックをつける毎に状態を更新していたら、通信回数が多くなりそう
-- ソート機能の追加
+## やり残したこと
+- 画像を /publicディレクトリに置いて、
+```
+import Image from "next/image";
+<Image src={require("../public/add.png")} alt="+" width={15} height={15} className="icon_add" />
+```
+としたいけど、
+Error: Image Optimization using Next.js' default loader is not compatible with `next export`. というエラーでbuildできない
+- チェックをつける毎にfirestoreを更新しているけど、通信回数が多くなりそう
+- ログイン機能

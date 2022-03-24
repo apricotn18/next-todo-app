@@ -8,6 +8,7 @@ https://apric-todo-app.herokuapp.com/
 - 削除
 - チェックの切り替え
 - ソート
+- fireStoreを使う
 - typescriptを使う
 
 ## やり残したこと

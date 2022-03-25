@@ -23,3 +23,4 @@ Error: Image Optimization using Next.js' default loader is not compatible with `
 - /pageと/publicディレクトリにおけるファイルを理解できていない
 - チェックをつける毎にfirestoreを更新しているけど、通信回数が多くなりそう
 - ログイン機能
+- Reduxを使ってみる

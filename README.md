@@ -1,8 +1,6 @@
 ```
 $ npm run dev
 ```
-https://apric-todo-app.herokuapp.com/
-
 - 表示
 - 追加
 - 削除
